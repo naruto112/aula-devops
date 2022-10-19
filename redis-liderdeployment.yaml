@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis-lider
+    role: lider
+    tier: backend
+  name: redis-lider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-lider
+      role: lider
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: redis-lider
+        role: lider
+        tier: backend
+    spec:
+      containers:
+        - image: redis:6.0.5
+          name: redis
+          ports:
+            - containerPort: 6379
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
